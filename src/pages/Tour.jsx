@@ -120,7 +120,7 @@ export default function ()
 
             const marker = new mapboxgl.Marker ().setLngLat (location.coordinates).addTo (map.current); 
         }
-        map.current.fitBounds ([sw, ne]);
+        map.current.fitBounds ([ne, sw]);
       }
     },[data])
 
