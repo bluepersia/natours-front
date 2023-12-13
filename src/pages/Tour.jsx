@@ -87,9 +87,9 @@ export default function ()
         if (map.current) return;
 
         let locations = [tour.startLocation, ...tour.locations];
-        locations = locations.map (location => location.coordinates);
 
-        let averages = locations.reduce ((prev, curr) => [prev[0] + curr[0], prev[1] + curr[1]],[0, 0]);
+        const locationsCoords = locations.map (location => location.coordinates);
+        let averages = locationsCoords.reduce ((prev, curr) => [prev[0] + curr[0], prev[1] + curr[1]],[0, 0]);
         averages[0] /= locations.length;
         averages[1] /= locations.length;
 
@@ -102,7 +102,7 @@ export default function ()
           scrollZoom: false
         })
 
-        for (const location of tour.locations)
+        for (const location of locations)
         {
             const marker = new mapboxgl.Marker ().setLngLat (location.coordinates).addTo (map.current); 
         }
