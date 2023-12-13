@@ -99,7 +99,6 @@ export default function ()
           style: 'mapbox://styles/mapbox/streets-v12',
           center: [averages[0], averages[1]],
           zoom,
-          minZoom: 6,
           scrollZoom: false
         })
 
