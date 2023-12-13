@@ -103,10 +103,26 @@ export default function ()
           scrollZoom: false
         })
 
+        const sw = [0, 0];
+        const ne=[0, 0];
+
         for (const location of locations)
         {
             const marker = new mapboxgl.Marker ().setLngLat (location.coordinates).addTo (map.current); 
+            
+            const [lat, lng] = location.coordinates;
+
+            if (lat > sw[0])
+              sw[0] = lat;
+            if (lng > sw[1])
+              sw[1] = lng;
+            if (lat < se[0])
+              se[0] = lat;
+            if (lng < se[1])
+              se[1] = lng;
         }
+
+        map.current.fitBounds ([sw, ne]);
     
       }
     },[data])
