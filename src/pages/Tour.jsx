@@ -103,8 +103,8 @@ export default function ()
           scrollZoom: false
         })
 
-        const sw = [0, 0];
-        const ne=[0, 0];
+        const sw = [undefined, undefined];
+        const ne=[undefined, undefined];
 
         for (const location of locations)
         {
@@ -112,13 +112,13 @@ export default function ()
             
             const [lat, lng] = location.coordinates;
 
-            if (lat > ne[0])
+            if (lat > ne[0] || ne[0] == undefined)
               ne[0] = lat;
-            if (lng > ne[1])
+            if (lng > ne[1] || ne[1] == undefined)
               ne[1] = lng;
-            if (lat < sw[0])
+            if (lat < sw[0] || sw[0] == undefined)
               sw[0] = lat;
-            if (lng < sw[1])
+            if (lng < sw[1] || sw[1] == undefined)
               sw[1] = lng;
         }
         console.log (sw, ne);
