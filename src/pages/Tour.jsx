@@ -88,25 +88,39 @@ export default function ()
 
         let locations = [tour.startLocation, ...tour.locations];
 
+        /*
         const locationsCoords = locations.map (location => location.coordinates);
         let averages = locationsCoords.reduce ((prev, curr) => [prev[0] + curr[0], prev[1] + curr[1]],[0, 0]);
         averages[0] /= locations.length;
-        averages[1] /= locations.length;
+        averages[1] /= locations.length;*/
 
         map.current = new mapboxgl.Map ({
           container: mapContainer.current,
           style: 'mapbox://styles/mapbox/streets-v12',
-          center: [averages[0], averages[1]],
+          center: [0,0],
           zoom,
           minZoom: 6,
           scrollZoom: false
         })
 
+        const ne=[0,0];
+        const sw=[0,0];
         for (const location of locations)
         {
+          const {coordinates} = location;
+            if (coordinates[0] > ne[0])
+              ne[0] = coordinates[0];
+            if (coordinates[1] > ne[1])
+              ne[1] = coordinates[1];
+
+            if (coordinates[0] < sw[0])
+              sw[0] = coordinates[0];
+            if (coordinates[1] < sw[1])
+              sw[1] = coordinates[1];
+
             const marker = new mapboxgl.Marker ().setLngLat (location.coordinates).addTo (map.current); 
         }
-    
+        map.current.fitBounds ([sw, ne]);
       }
     },[data])
 
