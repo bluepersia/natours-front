@@ -112,14 +112,14 @@ export default function ()
             
             const [lat, lng] = location.coordinates;
 
-            if (lat > ne[0])
-              ne[0] = lat;
-            if (lng > ne[1])
-              ne[1] = lng;
-            if (lat < sw[0])
-              sw[0] = lat;
-            if (lng < sw[1])
-              sw[1] = lng;
+            if (lat > ne[1])
+              ne[1] = lat;
+            if (lng > ne[0])
+              ne[0] = lng;
+            if (lat < sw[1])
+              sw[1] = lat;
+            if (lng < sw[0])
+              sw[0] = lng;
         }
 
         map.current.fitBounds ([sw, ne]);
