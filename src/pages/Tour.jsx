@@ -110,7 +110,7 @@ export default function ()
         {
             const marker = new mapboxgl.Marker ().setLngLat (location.coordinates).addTo (map.current); 
             
-            const [lat, lng] = location.coordinates;
+            const [lat, lng] = location.coordinates.map (coord => Number(coord));
 
             if (lat > ne[0] || ne[0] == undefined)
               ne[0] = lat;
