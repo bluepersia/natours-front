@@ -204,13 +204,13 @@ export default function ()
 
     async function like ()
     {
-      await likeFetch.run (`${URL}/api/v1/likes`, 'post', {tour: tourId})
+      await likeFetch.run (`${URL}/api/v1/likes`, 'POST', {tour: tourId})
       fetchLike ();
     }
 
     async function dislike ()
     {
-      await unlikeFetch.run (`${URL}/api/v1/likes/${tourLikeFetch.data.data.like._id}`, 'delete');
+      await unlikeFetch.run (`${URL}/api/v1/likes/${tourLikeFetch.data.data.like._id}`, 'DELETE');
       fetchLike ();
     }
 
