@@ -162,7 +162,8 @@ export default function ()
     async function handleReviewSubmit (e)
     {
       e.preventDefault ();
-      reviewCreateFetch.run (`${URL}/api/v1/reviews`, 'POST', {...reviewForm, tour: tourId});
+      await reviewCreateFetch.run (`${URL}/api/v1/reviews`, 'POST', {...reviewForm, tour: tourId});
+      fetchReview ();
       /*
       try {
         const res = await fetch (`${URL}/api/v1/reviews`, {
