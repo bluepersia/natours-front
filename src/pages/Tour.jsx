@@ -120,7 +120,6 @@ export default function ()
             if (lng < sw[1] || sw[1] == undefined)
               sw[1] = lng;
         }
-        console.log (sw, ne);
         map.current.fitBounds ([sw, ne]);
     
       }
@@ -163,7 +162,8 @@ export default function ()
     async function handleReviewSubmit (e)
     {
       e.preventDefault ();
-
+      reviewCreateFetch.run (`${URL}/api/v1/reviews`, 'POST', {...reviewForm, tour: tourId});
+      /*
       try {
         const res = await fetch (`${URL}/api/v1/reviews`, {
           method: 'post',
@@ -182,7 +182,7 @@ export default function ()
       catch(err)
       {
         console.error(err);
-      }
+      }*/
     }
 
     function fetchBooking ()
